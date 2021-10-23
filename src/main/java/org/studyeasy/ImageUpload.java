@@ -21,14 +21,22 @@ public class ImageUpload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public String path = "C:/Users/frank/OneDrive/Desktop/images/"; 
 	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getParameter("action");
+		switch(action) {
+			case "listingImages":
+				listingImages(request, response);
+				break;
+			default:
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		switch(action) {
 			case "filesUpload":
 				filesUpload(request, response);
-				break;
-			case "listingImages":
-				listingImages(request, response);
 				break;
 			default:
 				request.getRequestDispatcher("index.jsp").forward(request, response);
