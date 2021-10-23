@@ -36,6 +36,9 @@ public class ImageUpload extends HttpServlet {
 	}
 	
 	private void listingImages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Files> files = new FilesDAO().listFiles();
+		request.setAttribute("files", files);
+		request.setAttribute("path", path);
 		request.getRequestDispatcher("listFiles.jsp").forward(request, response);
 		
 	}
@@ -53,8 +56,8 @@ public class ImageUpload extends HttpServlet {
 					new FilesDAO().addFileDetails(new Files(name));
 					image.write(file);
 				}
-				listingImages(request, response);
 			}
+			listingImages(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
