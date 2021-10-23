@@ -10,15 +10,21 @@
 </head>
 <body>
 <h1>listing images</h1>
-
+<table border="1">
+<tr>
+<th>Preview</th>
+<th>Available information</th>
+<th>Update information</th>
+<th>Action</th>
 <%
 	String path = (String) request.getAttribute("path");
 	List<Files> files = (List<Files>) request.getAttribute("files");
 	for(Files file : files){
-		out.print("<br/><img src="+path+file.getFileName()+">");
+		out.print("<tr><td><img src="+path+file.getFileName()+" height='200'></td></tr>");
 	}
 
 
 %>
+</table>
 </body>
 </html>
