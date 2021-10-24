@@ -27,10 +27,19 @@ public class FilesDAO {
 		//session.getTransaction().commit();
 		return files;
 	}
-	public void updateInformation(Files file) {
+	public void updateInformation(int id, String label, String caption) {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
-		session.update(file);
+		Files file = session.get(Files.class, id);
+		file.setLabel(label);
+		file.setCaption(caption);
 		session.getTransaction().commit();
+	}
+	public Files getFile(int fileId) {
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		Files file = session.get(Files.class, fileId);
+		session.getTransaction().commit();
+		return file;
 	}
 }

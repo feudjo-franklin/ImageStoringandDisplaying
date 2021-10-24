@@ -27,11 +27,14 @@ public class FilesHandler extends HttpServlet {
 			case "listingImages":
 				listingImages(request, response);
 				break;
+			case "viewImage":
+				viewImage(request,response);
+				break;
 			default:
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		switch(action) {
@@ -46,13 +49,17 @@ public class FilesHandler extends HttpServlet {
 		}
 	}
 	
+	private void viewImage(HttpServletRequest request, HttpServletResponse response) {
+		int fileId = Integer.parseInt(request.getParameter("fileId"));
+		Files file = new FilesDAO().getFile(fileId);
+		System.out.println(file);
+	}
+	
 	private void updateInformation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int fileId = Integer.parseInt(request.getParameter("fileId"));
 		String label = request.getParameter("label");
 		String caption = request.getParameter("caption");
-		String fileName = request.getParameter("fileName");
-		Files file = new Files(fileId, fileName, label, caption);
-		new FilesDAO().updateInformation(file);
+		new FilesDAO().updateInformation(fileId, label, caption);
 		listingImages(request, response);
 	}
 
