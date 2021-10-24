@@ -12,14 +12,6 @@
 <%! String form; int fileId; %>
 <%
 
-String form = "<form action='FilesHandler' method='post'>"+
-			  "Label: <input type='text' name='label'/><br/><br/>"+
-			  "Caption: <input type='text' name='caption'/><br/><br/>"+
-			  "<input type='hidden' name='fileId' value='"+fileId+"'/>"+
-			  "<input type='submit' value='Update'/>"+
-			  "</form>";
-
-
 
 %>
 <h1>listing images</h1>
@@ -39,9 +31,17 @@ String form = "<form action='FilesHandler' method='post'>"+
 				"<li>File name:"+file.getFileName()+"</li>"+
 				"<li>File Label:"+file.getLabel()+"</li>"+
 				"<li>File Caption:"+file.getCaption()+"</li>"+
-				"</ul></td>"+
-				"<td>"+form+"</tr>"
+				"</ul></td>"
 				);
+		fileId = file.getId();
+		String form = "<form action='FilesHandler' method='post'>"+
+				  "Label: <input type='text' name='label'/><br/><br/>"+
+				  "Caption: <input type='text' name='caption'/><br/><br/>"+
+				  "<input type='hidden' name='fileId' value='"+fileId+"'/>"+
+				  "<input type='hidden' name='action' value='updateInformation'/>"+
+				  "<input type='submit' value='Update'/>"+
+				  "</form>";
+		out.print("<td>"+form+"</td></tr>");
 	}
 
 %>

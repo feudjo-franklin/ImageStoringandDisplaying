@@ -27,4 +27,10 @@ public class FilesDAO {
 		//session.getTransaction().commit();
 		return files;
 	}
+	public void updateInformation(Files file) {
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		session.update(file);
+		session.getTransaction().commit();
+	}
 }

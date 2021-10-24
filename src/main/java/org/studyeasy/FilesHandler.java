@@ -38,11 +38,23 @@ public class FilesHandler extends HttpServlet {
 			case "filesUpload":
 				filesUpload(request, response);
 				break;
+			case "updateInformation":
+				updateInformation(request, response);
+				break;
 			default:
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 	}
 	
+	private void updateInformation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int fileId = Integer.parseInt(request.getParameter("fileId"));
+		String label = request.getParameter("label");
+		String caption = request.getParameter("caption");
+		Files file = new Files(fileId, label, caption);
+		new FilesDAO().updateInformation(file);
+		listingImages(request, response);
+	}
+
 	private void listingImages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Files> files = new FilesDAO().listFiles();
 		request.setAttribute("files", files);

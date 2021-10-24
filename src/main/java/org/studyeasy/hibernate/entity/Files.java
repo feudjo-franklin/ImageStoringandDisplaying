@@ -21,7 +21,15 @@ public class Files {
 	public Files() {}
 
 	
-	
+	public Files(int id, String label, String caption) {
+		super();
+		this.id = id;
+		this.label = label;
+		this.caption = caption;
+	}
+
+
+
 	public Files(String fileName) {
 		super();
 		this.fileName = fileName;
