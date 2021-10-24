@@ -44,7 +44,9 @@
 				  "</form>";
 		out.print("<td>"+form+"</td>");
 		out.print("<td><ul><li><a href='"+request.getContextPath()+"/FilesHandler?action=viewImage&fileId="+
-				file.getId()+"'>View Image</a></li></ul></td></tr>");
+				file.getId()+"'>View Image</a></li>");
+		out.print("<li><a href='"+request.getContextPath()+"/FilesHandler?action=deleteImage&fileId="+
+				file.getId()+"'onclick=\"if(!confirm('Do you really want to delete this image?')) return false\">delete Image</a></li></ul></td></tr>");
 	}
 
 %>

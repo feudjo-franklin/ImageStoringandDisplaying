@@ -30,6 +30,9 @@ public class FilesHandler extends HttpServlet {
 			case "viewImage":
 				viewImage(request,response);
 				break;
+			case "deleteImage":
+				deleteImage(request,response);
+				break;
 			default:
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
@@ -47,6 +50,21 @@ public class FilesHandler extends HttpServlet {
 			default:
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
+	}
+	
+	private void deleteImage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		//the logic for file deletion from database
+		int fileId = Integer.parseInt(request.getParameter("fileId"));
+		Files file = new FilesDAO().getFile(fileId);
+		new FilesDAO().deleteFile(fileId);
+		//the logic for file deletion from FileSystem
+		File fileOnDisc = new File(path+file.getFileName());
+		if(fileOnDisc.delete()) {
+			System.out.println("File got deleted from filesystem");
+		}else {
+			System.out.println("File not deleted from filesystem");
+		}
+		listingImages(request, response);
 	}
 	
 	private void viewImage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
