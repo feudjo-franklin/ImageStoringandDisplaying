@@ -19,8 +19,17 @@ public class Files {
 	String caption;
 	
 	public Files() {}
-
 	
+	public Files(int id, String fileName, String label, String caption) {
+		super();
+		this.id = id;
+		this.fileName = fileName;
+		this.label = label;
+		this.caption = caption;
+	}
+
+
+
 	public Files(int id, String label, String caption) {
 		super();
 		this.id = id;

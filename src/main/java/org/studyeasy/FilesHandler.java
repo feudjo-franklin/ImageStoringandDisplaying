@@ -50,7 +50,8 @@ public class FilesHandler extends HttpServlet {
 		int fileId = Integer.parseInt(request.getParameter("fileId"));
 		String label = request.getParameter("label");
 		String caption = request.getParameter("caption");
-		Files file = new Files(fileId, label, caption);
+		String fileName = request.getParameter("fileName");
+		Files file = new Files(fileId, fileName, label, caption);
 		new FilesDAO().updateInformation(file);
 		listingImages(request, response);
 	}

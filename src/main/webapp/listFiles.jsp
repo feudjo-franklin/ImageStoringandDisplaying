@@ -39,6 +39,7 @@
 				  "Caption: <input type='text' name='caption'/><br/><br/>"+
 				  "<input type='hidden' name='fileId' value='"+fileId+"'/>"+
 				  "<input type='hidden' name='action' value='updateInformation'/>"+
+				  "<input type='hidden' name='fileName' value='"+file.getFileName()+"'/>"+
 				  "<input type='submit' value='Update'/>"+
 				  "</form>";
 		out.print("<td>"+form+"</td></tr>");
